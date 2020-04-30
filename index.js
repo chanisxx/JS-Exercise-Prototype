@@ -71,7 +71,13 @@ Person.prototype.toString = function () {
 */
 
 function Car(model, milesPerGallon) {
-
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
+}
+Car.prototype.fill = function (gallons) {
+  this.tank += gallons;
 }
 
 /*
@@ -81,18 +87,23 @@ function Car(model, milesPerGallon) {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
-
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age, favoriteToy);
+  this.favoriteToy = favoriteToy;
+}
+Baby.prototype = Object.create(Person.prototype);
+Baby.prototype.play = function () {
+  return `Playing with ${this.favoriteToy}`;
 }
 
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. When the this keyword is written within global scope, it will point to the window object.
+  2. An object connected to the this keyword means that it is referring to that object.
+  3. When a constructor is used, this will refer to a key inside the object in which the value can be changed by a new function.
+  4. the call and apply method allows 'this' to be explicitly defined through the declaration of the object which it is refering to.
 */
 
 
